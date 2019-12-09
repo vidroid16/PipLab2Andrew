@@ -19,7 +19,7 @@ $(document).ready(function() {
                 y:y_server,
                 r:r
             },
-            function () {
+            function (data, textStatus, jqXHR) {
                 let result_block = document.getElementById("xyi");
                 result_block.innerHTML +="";
             });

@@ -11,10 +11,6 @@ body{
 td{
     text-align: center;
 }
-canvas{
-    width: calc(30vmin * 1.8);
-    object-fit: contain;
-}
 #main_hat{
 
     background: rgb(77,77,77);

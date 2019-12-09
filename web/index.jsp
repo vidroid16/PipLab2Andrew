@@ -15,6 +15,7 @@
     <script type="text/javascript" src="script.js"></script>
     <script type="text/javascript" src="jquery-3.4.1.js"></script>
     <script type="text/javascript" src="canvas.js"></script>
+    <script type="text/javascript">const jspContextPath = '${pageContext.request.contextPath}';</script>
 </head>
 <body onload="docLoad()">
 <script>console.log(jcp);</script>
@@ -35,7 +36,7 @@
     <div id="logic">
         <div id="graph-container">
             <img id="gr" src="area.png"/>
-            <%--<canvas height="461" width="514"></canvas>--%>
+            <%--<canvas id="my-canvas"></canvas>--%>
         </div>
         <div id="table-grid-container">
             <div id="table_container">
