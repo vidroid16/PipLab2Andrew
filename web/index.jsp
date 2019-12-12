@@ -35,8 +35,8 @@
     <h1 id="lab_name" class="title">Лабораторная работа №2 по ВЕБ-Программированию</h1>
     <div id="logic">
         <div id="graph-container">
-            <img id="gr" src="area.png"/>
-            <%--<canvas id="my-canvas"></canvas>--%>
+                <canvas id="my-canvas"></canvas>
+<%--                <img id="gr" src="area.png"/>--%>
         </div>
         <div id="table-grid-container">
             <div id="table_container">

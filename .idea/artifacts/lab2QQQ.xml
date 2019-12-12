@@ -6,6 +6,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="lab2QQQ" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="org.json:json:20190722" />
+        </element>
       </element>
       <element id="javaee-facet-resources" facet="lab2QQQ/web/Web" />
     </root>

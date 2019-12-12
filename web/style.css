@@ -57,11 +57,7 @@ td{
     font-size: inherit;
 }
 
-img{
-    width: calc(30vmin * 1.8);
-    object-fit: contain;
-    background-color: hotpink;
-}
+
 .vars{
     justify-content: space-between;
     align-items: center;
@@ -101,11 +97,18 @@ input[type='button']{
 }
 
 #graph-container{
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     grid-area: graph;
     height: calc(100vh - 200px);
+}
+
+#my-canvas{
+    background: url("area.png") no-repeat;
+    background-size: contain;
+    height: 50vmin;
+    width: 50vmin;
 }
 
 #yField{
@@ -188,9 +191,10 @@ input[type='button']{
     body{
         font-size: 1rem;
     }
-    img{
+    /*TODO*/
+    #my-canvas{
         position: relative;
-        margin-top: 100px;
+        margin-top: 150px;
 
     }
     #rez-container{
