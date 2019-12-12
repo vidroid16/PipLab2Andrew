@@ -75,7 +75,7 @@ function getHistory() {
                 subdiv.textContent = "Результат - " + (p.isIn ? "Входит" : "Не входит") + "\n";
 
                 mdiv.appendChild(subdiv);
-                document.getElementById('xyi').appendChild(mdiv);
+                $('#xyi').prepend(mdiv);
             });
         }
     });
