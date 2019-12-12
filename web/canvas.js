@@ -45,13 +45,13 @@ function getServerY(y, a, r){
 }
 
 function getClientX(x, a, r){
-    let x_client = (A/a) * ((x+0.5 * A) * (R/r));
+    let x_client = (a/A) * ((x* (R/r)+0.5 * A));
     x_client = x_client.toFixed(4);
     console.log("x_client: " + x_client);
     return x_client;
 }
 function getClientY(y, a, r){
-    let y_client = -(A/a) * ((y+0.5 * A) * (R/r));
+    let y_client = -(a/A) * ((y* (R/r)+0.5 * A));
     y_client = y_client.toFixed(4);
     console.log("y_client: " + y_client);
     return y_client;
