@@ -51,15 +51,16 @@ public class AreaCheckServlet extends HttpServlet {
 
 
     private boolean checkPoint(double x, double y, int r){
-        if(y <= 0.5 * x + r && x <= 0 && y >= 0){
+        if(y <= 0.5*x + 0.5*r && x <= 0 && y >= 0){
+            return true;
+        }
+        if((y >= -r) && (y <= 0) && (x >= (-r/2)) && (x <= 0)){
             return true;
         }
         if(y*y +  x*x <= Math.pow((double)r/2, 2) && y <= 0 && x >= 0){
             return true;
         }
-        if(y >= -r && y <= 0 && x >= -r/2 && x <= 0){
-            return true;
-        }
+
         return false;
     }
 

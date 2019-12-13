@@ -1,10 +1,10 @@
-const A = 305;
-const R = 110;
+const A = 222;
+const R = 80;
 
 var pointsHistoryJson = "";
 
 $(document).ready(function() {
-    $("#my-canvas").on("click", function (event) {
+    $("#my-canvas").on("click",function (event) {
         let h = document.getElementById("my-canvas").offsetHeight;
         let w = document.getElementById("my-canvas").offsetWidth;
         let x = event.pageX - this.offsetLeft;
@@ -24,7 +24,8 @@ $(document).ready(function() {
             },
             success: function (data) {
                 getHistory();
-                drawPoints();
+                console.log("HISTORY SAVED");
+                console.log("POINTS DRAWED");
             }
         });
 
@@ -32,28 +33,29 @@ $(document).ready(function() {
 });
 
 function getServerX(x, a, r){
-    let x_server = (A/a)*((x-0.5*a)/(R/r));
+    //let x_server = (A/a)*((x-0.5*a)/(R/r));
+    let x_server = ((x-0.5*a)/(R/r));
     x_server = x_server.toFixed(4);
-    console.log("x-server: " + x_server);
+    //console.log("x-server: " + x_server);
     return x_server;
 }
 function getServerY(y, a, r){
     let y_server = -(A/a)*((y-0.5*a)/(R/r));
     y_server = y_server.toFixed(4);
-    console.log("y_server: " + y_server);
+    //console.log("y_server: " + y_server);
     return y_server;
 }
 
 function getClientX(x, a, r){
-    let x_client = (a/A) * ((x* (R/r)+0.5 * A));
+    let x_client = ((x* (R/r)+0.5 * A));
     x_client = x_client.toFixed(4);
-    console.log("x_client: " + x_client);
+    //console.log("x_client: " + x_client);
     return x_client;
 }
 function getClientY(y, a, r){
-    let y_client = -(a/A) * ((y* (R/r)+0.5 * A));
+    let y_client = -((y* (R/r)-0.5 * A));
     y_client = y_client.toFixed(4);
-    console.log("y_client: " + y_client);
+    //console.log("y_client: " + y_client);
     return y_client;
 }
 
@@ -67,7 +69,7 @@ function getHistory() {
         },
         success: function (data) {
             pointsHistoryJson = data;
-            JSON.parse(data).forEach((p, i)=>{
+            JSON.parse(data).forEach((p)=>{
                 let mdiv = document.createElement('div');
                 let subdiv = document.createElement('div');
                 mdiv.className = 'result_h';
@@ -77,6 +79,7 @@ function getHistory() {
                 mdiv.appendChild(subdiv);
                 $('#xyi').prepend(mdiv);
             });
+            drawPoints();
         }
     });
 }

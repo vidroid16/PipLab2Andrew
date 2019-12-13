@@ -3,6 +3,7 @@ var submit;
 
 function docLoad(){
     submit = document.getElementById("go");
+    getHistory();
 
 }
 function getCookie(name) {

@@ -107,8 +107,10 @@ input[type='button']{
 #my-canvas{
     background: url("area.png") no-repeat;
     background-size: contain;
-    height: 50vmin;
-    width: 50vmin;
+    /height: 50vmin;
+    /width: 50vmin;
+    height: 222px;
+    width: 222px;
 }
 
 #yField{
