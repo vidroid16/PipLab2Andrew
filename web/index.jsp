@@ -61,7 +61,7 @@
                             </div>
                             <div class="vars" id="R">
                                 R
-                                <select name="r" id="R-select" style="width: 98%;">
+                                <select name="r" id="R-select" onchange="redraw()" style="width: 98%;">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

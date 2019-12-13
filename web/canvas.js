@@ -13,22 +13,23 @@ $(document).ready(function() {
 
         let x_server = getServerX(x, h, r);
         let y_server = getServerY(y, h, r);
-        console.log(x_server + " " + y_server + " " + r);
-
-        $.ajax({
-            url: '/controller',
-            type: 'POST',
-            dataType: 'html',
-            data: {'x': x_server, 'y': y_server, 'r': r},
-            beforeSend: function () {
-            },
-            success: function (data) {
-                getHistory();
-                console.log("HISTORY SAVED");
-                console.log("POINTS DRAWED");
-            }
-        });
-
+        var isOK = check(x_server,y_server, r);
+        if(isOK=="ok"){
+            $.ajax({
+                url: '/controller',
+                type: 'POST',
+                dataType: 'html',
+                data: {'x': x_server, 'y': y_server, 'r': r},
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    getHistory();
+                }
+            });
+        }else{
+            let output = document.getElementById("invalid_data");
+            output.innerHTML = isOK;
+        }
     });
 });
 
@@ -79,7 +80,7 @@ function getHistory() {
                 mdiv.appendChild(subdiv);
                 $('#xyi').prepend(mdiv);
             });
-            drawPoints();
+            redraw();
         }
     });
 }
@@ -96,6 +97,38 @@ function drawPoints() {
         let yClient = getClientY(parseFloat(p.y), h, parseInt(p.r));
         let canvas = document.getElementById("my-canvas");
         let context = canvas.getContext("2d");
+        context.beginPath();
+        if(parseInt(getR()) != parseInt(p.r)){
+            //context.strokeStyle = 'black';
+            //context.fillStyle = 'black';
+        }else{
+            if(p.isIn){
+                context.strokeStyle = 'green';
+                context.fillStyle = 'green';
+            }else{
+                context.strokeStyle = 'red';
+                context.fillStyle = 'red';
+            }
+        }
+
+
+        context.arc(xClient, yClient, 1.5, 0, 2 * Math.PI);
+        context.closePath();
+        context.fill();
+        context.stroke();
+    });
+}
+function redraw(){
+    //let r = $("#R-select").val();
+    let r = getR();
+    document.getElementById("my-canvas").getContext("2d").clearRect(0, 0, 222, 222);
+    JSON.parse(pointsHistoryJson).forEach((p, i)=>{
+        let h = document.getElementById("my-canvas").offsetHeight;
+        let xClient = getClientX(parseFloat(p.x), h, parseInt(r));
+        let yClient = getClientY(parseFloat(p.y), h, parseInt(r));
+        let canvas = document.getElementById("my-canvas");
+        let context = canvas.getContext("2d");
+        console.log("X= " + p.x + ", Y= " + p.y+ ", R=" + p.r +"\n");
         context.beginPath();
         if(parseInt(getR()) != parseInt(p.r)){
             context.strokeStyle = 'black';

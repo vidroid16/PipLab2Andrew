@@ -3,8 +3,7 @@ var submit;
 
 function docLoad(){
     submit = document.getElementById("go");
-    getHistory();
-
+    redraw();
 }
 function getCookie(name) {
     var matches = document.cookie.match(new RegExp(
@@ -17,14 +16,14 @@ function check(x, y, r) {
     if (x === undefined) vars.push("X");
     if (y === undefined || y === "") vars.push("Y");
     if (r === undefined) vars.push("R");
-    if (/^(2.9+)$/.test(y)) {
-        y = 2.9999;
+    if (/^(4.9+)$/.test(y)) {
+        y = 4.9999;
     } else if (/^-4.9+$/.test(y)) {
         y = -4.9999;
     }
     if (vars.length !== 0) return 'Значения ' + vars.join(', ') + ' не инициализированы';
     if (isNaN(Number(y))) return 'Значение Y должно быть числом';
-    if ((y >= 3 || y <= -5)) return 'Значение Y должно быть в промежутке (-5; 3)';
+    if ((y >= 5 || y <= -5)) return 'Значение Y должно быть в промежутке (-5; 5)';
     return 'ok';
 }
 function submitForm(){
