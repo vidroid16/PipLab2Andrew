@@ -24,27 +24,32 @@ public class ControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameterMap().size() == 0) {
-            System.out.println("ZAEBIS");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-        } else {
-            @SuppressWarnings("unchecked")
-            ArrayList<Pair<String, Result>> results = (ArrayList<Pair<String, Result>>) getServletContext().getAttribute(LabConst.RESULT_ARRAY);
-            StringBuilder str = new StringBuilder();
-            if (results != null) {
-                List<Result> resultList = results.stream().filter(p -> p.getKey().equals(req.getRequestedSessionId()))
-                        .map(Pair::getValue).collect(Collectors.toList());
-                JSONArray resultJson = new JSONArray();
-                resultList.forEach(p -> {
-                    JSONObject pJson = new JSONObject();
-                    pJson.put("x", p.getX());
-                    pJson.put("y", p.getY());
-                    pJson.put("r", p.getR());
-                    pJson.put("isIn", p.isIn());
-                    resultJson.put(pJson);
-                });
-                resp.getWriter().print(resultJson.toString());
+        try {
+            if (req.getParameterMap().size() == 0 || !req.getHeader("isUser").equals("true")) {
+                System.out.println("OK");
+                req.getRequestDispatcher("index.jsp").forward(req, resp);
+            } else {
+                @SuppressWarnings("unchecked")
+                ArrayList<Pair<String, Result>> results = (ArrayList<Pair<String, Result>>) getServletContext().getAttribute(LabConst.RESULT_ARRAY);
+                StringBuilder str = new StringBuilder();
+                if (results != null) {
+                    List<Result> resultList = results.stream().filter(p -> p.getKey().equals(req.getRequestedSessionId()))
+                            .map(Pair::getValue).collect(Collectors.toList());
+                    JSONArray resultJson = new JSONArray();
+                    resultList.forEach(p -> {
+                        JSONObject pJson = new JSONObject();
+                        pJson.put("x", p.getX());
+                        pJson.put("y", p.getY());
+                        pJson.put("r", p.getR());
+                        pJson.put("isIn", p.isIn());
+                        resultJson.put(pJson);
+                    });
+                    resp.getWriter().print(resultJson.toString());
+                }
             }
+        }catch(NullPointerException e){
+            System.out.println("OK");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
         //    @Override

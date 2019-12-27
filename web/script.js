@@ -3,13 +3,8 @@ var submit;
 
 function docLoad(){
     submit = document.getElementById("go");
+    getHistory();
     redraw();
-}
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 function check(x, y, r) {
     var vars =[];
@@ -27,7 +22,7 @@ function check(x, y, r) {
     return 'ok';
 }
 function submitForm(){
-    var x=document.querySelector('input[name="x"]:checked').value;
+    var x=checkCheckboxes();
     var y=document.getElementById("Y").value;
     var r=document.getElementById("R-select").value;
     y=y.replace(",",".");
@@ -49,6 +44,19 @@ function submitForm(){
         output.innerHTML = isOk;
     }
 
+}
+function checkCheckboxes() {
+    let checkboxes = document.getElementsByName("x");
+    let checkboxesChecked = [];
+    let htmlStr="";
+    if(checkboxes.length>0){
+        for (let i=0; i<checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i]);
+                return checkboxesChecked.length;
+            }
+        }
+    }
 }
 function getCheckedBoxes() {
     let checkboxes = document.getElementsByName("x");

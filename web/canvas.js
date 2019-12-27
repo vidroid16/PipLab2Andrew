@@ -64,6 +64,9 @@ function getHistory() {
     document.getElementById('xyi').innerHTML = "";
     $.ajax({
         url: '/controller?param=1',
+        headers:{
+            "IsUser":"true"
+        },
         type: 'GET',
         dataType: 'html',
         beforeSend: function () {

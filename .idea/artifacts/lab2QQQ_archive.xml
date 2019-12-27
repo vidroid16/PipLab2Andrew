@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lab2QQQ archive">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab2QQQ_archive</output-path>
+    <root id="archive" name="lab2QQQ archive.war">
+      <element id="artifact" artifact-name="lab2QQQ" />
+    </root>
+  </artifact>
+</component>
